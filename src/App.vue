@@ -1,8 +1,11 @@
 <template>
   <div>
-    <app-header></app-header>
+    <app-header
+      v-bind:title="title"
+      v-on:changeTitle="updateTitle($event);"
+    ></app-header>
     <app-ninjas v-bind:ninjas="ninjas"></app-ninjas>
-    <app-footer></app-footer>
+    <app-footer v-bind:title="title"></app-footer>
   </div>
 </template>
 
@@ -19,6 +22,7 @@ export default {
   },
   data() {
     return {
+      title: "vuejs",
       ninjas: [
         { name: "Ryu", speciality: "Vue Components", show: false },
         { name: "Crystal", speciality: "HTML Wizardry", show: false },
@@ -28,6 +32,11 @@ export default {
         { name: "Yoshi", speciality: "Data Diggin", show: false }
       ]
     };
+  },
+  methods: {
+    updateTitle: function(updatesTitle) {
+      this.title = updatesTitle;
+    }
   }
 };
 </script>
